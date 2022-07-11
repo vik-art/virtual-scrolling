@@ -1,0 +1,14 @@
+.image-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  &-item {
+    margin-bottom: 20px;
+    flex-basis: 23%;
+    img {
+      width: 100%;
+    }
+  }
+}
