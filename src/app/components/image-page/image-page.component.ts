@@ -53,8 +53,7 @@ export class ImagePageComponent implements OnInit, AfterViewInit, OnDestroy {
   private setInterceptorObserver(): void {
     let options = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.5,
+      threshold: 0.7,
     };
     this.observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
