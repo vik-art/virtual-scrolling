@@ -1,7 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
+
 import { environment } from 'src/environments/environment';
+import { apiResponse } from '../common/interfaces/apiResponse.interface';
 import { Image } from '../common/interfaces/image.interface';
 
 
@@ -14,13 +16,16 @@ export class ImageService {
     private http: HttpClient
   ) { }
 
-  public loadImages(page: number): Observable<Image[]> {
+  public loadImages(page: number): Observable<apiResponse> {
     const params = new HttpParams()
       .set('key', environment.pixabyKey)
       .set('page', page);
-    return this.http.get<Response>(environment.pixabyUrl, { params: params }).pipe(
-      map((res: { [key: string]: any }) => {
-        return res['hits']
+    return this.http.get<apiResponse>(environment.pixabyUrl, { params: params }).pipe(
+      map((res: apiResponse) => {
+        return {
+          hits: res.hits,
+          totalHits: res.totalHits
+        }
       })
     )
   }
