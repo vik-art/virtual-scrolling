@@ -8,8 +8,8 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { ImageService } from 'src/app/services/image.service';
 
+import { ImageService } from 'src/app/services/image.service';
 import { Image } from '../../common/interfaces/image.interface';
 
 @Component({
