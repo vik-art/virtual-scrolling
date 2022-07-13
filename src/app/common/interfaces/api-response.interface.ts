@@ -1,6 +1,6 @@
 import { Image } from "./image.interface";
 
-export interface apiResponse {
-    totalHits: number,
+export interface ApiResponse {
+    totalHits: number;
     hits: Array<Image>
 }

@@ -1,9 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { apiResponse } from '../common/interfaces/apiResponse.interface';
+import { ApiResponse } from '../common/interfaces/api-response.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,14 +11,15 @@ import { apiResponse } from '../common/interfaces/apiResponse.interface';
 export class ImageService {
   constructor(private http: HttpClient) {}
 
-  public loadImages(page: number): Observable<apiResponse> {
-    const params = new HttpParams()
-      .set('key', environment.pixabyKey)
-      .set('page', page);
-    return this.http
-      .get<apiResponse>(environment.pixabyUrl, { params: params })
+  public loadImages(page: number): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(environment.pixabyUrl, {
+        params: {
+          key: environment.pixabyKey,
+          page: page,
+        },
+      })
       .pipe(
-        map((res: apiResponse) => {
+        map((res: ApiResponse) => {
           return {
             hits: res.hits,
             totalHits: res.totalHits,
